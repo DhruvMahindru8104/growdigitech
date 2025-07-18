@@ -1,9 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
-import { ChevronRight, MousePointerSquareDashed } from 'lucide-react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import GoogleMap from '@/components/mycomponents/gmvt'
 
 const services = [
   {
@@ -38,23 +39,19 @@ const services = [
   },
 ]
 
-const GrowUtilitiesSection = () => {
+export default function GrowUtilitiesSection() {
+  const [open, setOpen] = useState(false)
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="  dark:bg-[#003566] text-gray-900 dark:text-white py-4 md:py-20 bg-white"
+      className="dark:bg-[#003566] text-gray-900 dark:text-white py-4 md:py-20 bg-white"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-10 md:px-12">
-        
-        {/* Header */}
-      
-
         <div className="h-[1px] w-full bg-gray-200 dark:bg-white/10 my-6" />
-
-        {/* Title + Description */}
         <div className="flex flex-col justify-between gap-6 md:flex-row mb-12">
           <h2 className="text-3xl font-semibold md:w-1/2">
             What can Grow Digitech do for your business?
@@ -64,36 +61,53 @@ const GrowUtilitiesSection = () => {
           </p>
         </div>
 
-        {/* Cards with Motion */}
         <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-              className="rounded-xl border bg-white dark:bg-[#002a4d] text-gray-800 dark:text-white shadow-md overflow-hidden transition-all cursor-pointer"
-            >
-             <Image
-  src={service.image}
-  alt={service.title}
-  width={600}
-  height={300}
-  className={`aspect-video w-full object-center ${index < 3 ? 'object-contain' : 'object-cover'}`}
-/>
+          {services.map((service, index) => {
+            const isGMVT = service.title === 'GMVT'
 
-              <div className="p-5">
-                <p className="mb-1 font-semibold text-lg text-[#C1121F]">{service.title}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-300">{service.desc}</p>
-              </div>
-            </motion.div>
-          ))}
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
+                className="rounded-xl border bg-white dark:bg-[#002a4d] text-gray-800 dark:text-white shadow-md overflow-hidden transition-all cursor-pointer"
+                onClick={() => {
+                  if (isGMVT) setOpen(true)
+                }}
+              >
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  width={600}
+                  height={300}
+                  className={`aspect-video w-full object-center ${index < 3 ? 'object-contain' : 'object-cover'}`}
+                />
+                <div className="p-5">
+                  <p className="mb-1 font-semibold text-lg text-[#C1121F]">{service.title}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">{service.desc}</p>
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
+
+      {/* Shadcn Dialog */}
+      <Dialog open={open} onOpenChange={setOpen}>
+  <DialogContent className="max-w-3xl"> {/* wider dialog if needed */}
+    <DialogHeader>
+      <DialogTitle>You opened GMVT</DialogTitle>
+    </DialogHeader>
+
+    {/* Responsive Map Container */}
+    <div className="w-full h-[300px] overflow-hidden rounded-lg">
+      <GoogleMap />
+    </div>
+  </DialogContent>
+</Dialog>
     </motion.section>
   )
 }
-
-export default GrowUtilitiesSection
