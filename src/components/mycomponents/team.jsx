@@ -59,7 +59,7 @@ const team = [
 
 export default function TeamSection() {
   return (
-    <section className="">
+    <section className="p-10">
       <div className="container mx-auto text-left">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
