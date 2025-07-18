@@ -45,7 +45,7 @@ const GrowUtilitiesSection = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className=" bg-white dark:bg-[#003566] text-gray-900 dark:text-white"
+      className="  dark:bg-[#003566] text-gray-900 dark:text-white py-4 md:py-20 bg-white"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-10 md:px-12">
         

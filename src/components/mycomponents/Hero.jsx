@@ -6,7 +6,8 @@ import { motion } from 'framer-motion'
 
 export default function HeroSection() {
   return (
-    <main className="w-full bg-white">
+     
+    <main className="w-full bg-white py-4 md:py-20">
       <section className="relative overflow-hidden">
         <div className="mx-auto lg:max-w-7xl w-full px-5 sm:px-10 md:px-12 lg:px-5 flex flex-col lg:flex-row gap-8 lg:gap-10 xl:gap-12">
           

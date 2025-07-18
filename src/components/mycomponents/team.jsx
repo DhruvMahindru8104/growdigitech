@@ -107,7 +107,7 @@ export default function TeamSection() {
                 />
               </div>
               <div className="text-center">
-                <h3 className="text-lg font-semibold">{member.name}</h3>
+                <h3 className="text-lg font-semibold text-[#c1121f]">{member.name}</h3>
                 <p className="text-sm text-zinc-500">{member.role}</p>
                 <div className="mt-3 flex justify-center gap-4">
                   <a
