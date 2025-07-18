@@ -8,7 +8,8 @@ import AnimatedTestimonialsDemo from "@/components/mycomponents/testimonials";
 export default function Home() {
   return (
    <>
-   
+   <div className="overflow-hidden">
+
 <Navbar/>
    <HeroSection/>
    <ContentSection/>
@@ -19,6 +20,7 @@ export default function Home() {
     </div>
 
    <Footer/>
+   </div>
    
    </>
   );
